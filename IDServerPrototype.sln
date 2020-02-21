@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login.Core", "IDServerPrototype.Login.Core\IDServerPrototype.Login.Core.csproj", "{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login.Web", "IDServerPrototype.Login.Web\IDServerPrototype.Login.Web.csproj", "{80B74C49-28A5-4345-8440-E6A3C5981ED4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80B74C49-28A5-4345-8440-E6A3C5981ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80B74C49-28A5-4345-8440-E6A3C5981ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80B74C49-28A5-4345-8440-E6A3C5981ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80B74C49-28A5-4345-8440-E6A3C5981ED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,7 +37,7 @@ namespace IDServerPrototype.Login.Core.Configuration
                     {
                         new Secret("superSecretPassword".Sha256())
                     },
-                    AllowedScopes = new List<string> { "customAPI.read", "https://localhost:44350/resources" },
+                    AllowedScopes = new List<string> { "customAPI.read", "https://localhost:44355/resources", "http://localhost:5100/resources" },
                 },
                 new Client {
                     ClientId = "openIdConnectClient",
@@ -51,8 +51,8 @@ namespace IDServerPrototype.Login.Core.Configuration
                         "role",
                         "customAPI.write"
                     },
-                    RedirectUris = new List<string> {"https://localhost:5001/signin-oidc"},
-                    PostLogoutRedirectUris = new List<string> {"https://localhost:5001"}
+                    RedirectUris = new List<string> {"http://localhost:5100/signin-oidc", "https://localhost:44355/signin-oidc"},
+                    PostLogoutRedirectUris = new List<string> {"http://localhost:5100", "https://localhost:44355"}
                 }
             };
         }
