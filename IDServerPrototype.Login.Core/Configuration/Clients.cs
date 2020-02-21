@@ -5,7 +5,7 @@ using static IdentityServer4.IdentityServerConstants;
 
 namespace IDServerPrototype.Login.Core.Configuration
 {
-    internal class Clients
+    public class Clients
     {
         public static IEnumerable<Client> Get()
         {

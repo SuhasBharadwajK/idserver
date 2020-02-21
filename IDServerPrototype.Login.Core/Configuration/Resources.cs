@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IDServerPrototype.Login.Core.Configuration
 {
-    internal class Resources
+    public class Resources
     {
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {

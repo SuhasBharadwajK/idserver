@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IDServerPrototype.Login.Core.Configuration
 {
-    internal class Users
+    public class Users
     {
         public static List<TestUser> Get()
         {
