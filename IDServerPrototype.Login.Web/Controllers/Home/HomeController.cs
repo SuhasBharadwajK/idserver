@@ -39,6 +39,11 @@ namespace IdentityServer4.Quickstart.UI
             return NotFound();
         }
 
+        [Authorize]
+        public IActionResult Contact() {
+            return View();
+        }
+
         /// <summary>
         /// Shows the error page
         /// </summary>

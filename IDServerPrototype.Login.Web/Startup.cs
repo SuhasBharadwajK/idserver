@@ -35,7 +35,18 @@ namespace IDServerPrototype.Login.Web
                 .AddTestUsers(Users.Get())
                 .AddDeveloperSigningCredential();
 
-            services.AddAuthentication();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "cookie";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("cookie")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = "https://localhost:44355/";
+                options.ClientId = "openIdConnectClient";
+                options.SignInScheme = "cookie";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
