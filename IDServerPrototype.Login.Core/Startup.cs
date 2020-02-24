@@ -1,46 +1,76 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
+using IdentityServer4;
 using IDServerPrototype.Login.Core.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 
 namespace IDServerPrototype.Login.Core
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
+            const string connectionString = @"Data Source=.;database=Test.IdentityServer4.EntityFramework;user id=suhasb;password=abcd123;";
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddIdentityServer()
+                .AddOperationalStore(options => options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationsAssembly)))
+                .AddConfigurationStore(options => options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationsAssembly)))
                 .AddInMemoryClients(Clients.Get())
-                .AddInMemoryIdentityResources(Configuration.Resources.GetIdentityResources())
-                .AddInMemoryApiResources(Configuration.Resources.GetApiResources())
-                .AddTestUsers(Users.Get())
+                .AddInMemoryIdentityResources(Core.Configuration.Resources.GetIdentityResources())
+                .AddInMemoryApiResources(Core.Configuration.Resources.GetApiResources())
+                .AddAspNetIdentity<IdentityUser>()
                 .AddDeveloperSigningCredential();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "cookie";
-                options.DefaultChallengeScheme = "oidc";
-            })
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie("cookie")
-            .AddOpenIdConnect("oidc", options =>
+            .AddOpenIdConnect("Office365", options =>
             {
-                options.Authority = "http://localhost:5100/";
-                options.ClientId = "openIdConnectClient";
-                options.SignInScheme = "cookie";
-                options.RequireHttpsMetadata = false;
+                options.ClientId = "Office365Client";
+                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+
+                options.ClientId = Configuration["AuthProviders:Office365:ClientId"];
+                options.Authority = Configuration["AuthProviders:Office365:Authority"];
+
+                options.Scope.Clear();
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("email");
+
+                options.ReturnUrlParameter = "/Account/ExternalLoginCallback";
+
+                options.ResponseType = OpenIdConnectResponseType.IdToken;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "email",
+                    RoleClaimType = "role",
+                    ValidateIssuer = false
+                };
             });
+
+            services.AddDbContext<ApplicationDbContext>(builder => builder.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationsAssembly)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

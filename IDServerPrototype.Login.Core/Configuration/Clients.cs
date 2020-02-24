@@ -53,6 +53,21 @@ namespace IDServerPrototype.Login.Core.Configuration
                     },
                     RedirectUris = new List<string> {"http://localhost:5100/signin-oidc", "https://localhost:44350/signin-oidc"},
                     PostLogoutRedirectUris = new List<string> {"http://localhost:5100", "https://localhost:44350"}
+                },
+                new Client {
+                    ClientId = "Office365Client",
+                    ClientName = "Example Implicit Client Application",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        "role",
+                        "customAPI.write"
+                    },
+                    RedirectUris = new List<string> {"https://localhost:44350/Account/ExternalLoginCallback"},
+                    PostLogoutRedirectUris = new List<string> {"http://localhost:5100", "https://localhost:44350"}
                 }
             };
         }

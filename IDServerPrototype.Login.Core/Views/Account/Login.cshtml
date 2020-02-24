@@ -63,11 +63,11 @@
                             {
                                 <li>
                                     <a class="btn btn-default"
-                                       asp-controller="External"
-                                       asp-action="Challenge"
+                                       asp-controller="Account"
+                                       asp-action="ExternalLogin"
                                        asp-route-provider="@provider.AuthenticationScheme"
                                        asp-route-returnUrl="@Model.ReturnUrl">
-                                        @provider.DisplayName
+                                        @provider.AuthenticationScheme
                                     </a>
                                 </li>
                             }
