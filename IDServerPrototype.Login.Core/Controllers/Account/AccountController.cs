@@ -116,6 +116,15 @@ namespace IdentityServer4.Quickstart.UI
             {
                 var user = await _userManager.FindByNameAsync(model.Username);
 
+                if (user != null)
+                {
+                    var result = await this._signInManager.PasswordSignInAsync(user, model.Password, true, false);
+                    if (result.Succeeded)
+                    {
+
+                    }
+                }
+
                 // validate username/password against in-memory store
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
@@ -144,7 +153,7 @@ namespace IdentityServer4.Quickstart.UI
                     return Redirect("~/");
                 }
 
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId: context?.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
             }
 
@@ -228,6 +237,22 @@ namespace IdentityServer4.Quickstart.UI
             {
                 return Redirect(returnUrl);
             }
+
+            return Redirect("~/");
+        }
+        
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegistrationViewModel model)
+        {
+            var user = new IdentityUser { UserName = model.Username };
+            await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddLoginAsync(user, new UserLoginInfo("form", model.Username, "form"));
 
             return Redirect("~/");
         }
