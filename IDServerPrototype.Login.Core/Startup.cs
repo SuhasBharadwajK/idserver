@@ -29,7 +29,7 @@ namespace IDServerPrototype.Login.Core
         {
             services.AddControllersWithViews();
 
-            const string connectionString = @"Data Source=.;database=Test.IdentityServer4.EntityFramework;user id=suhasb;password=abcd123;";
+            string connectionString = Configuration["ConnectionStrings:IdentityDbConnection"];
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddIdentity<IdentityUser, IdentityRole>()
