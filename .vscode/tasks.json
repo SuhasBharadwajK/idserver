@@ -37,6 +37,15 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "path": "IDServerPrototype.Login.Web/ClientApp/",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
