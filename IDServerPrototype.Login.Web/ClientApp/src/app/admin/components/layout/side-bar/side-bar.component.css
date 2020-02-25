@@ -1,0 +1,13 @@
+.side-nav a {
+  font-size: 30px;
+}
+
+.side-nav {
+  position: fixed;
+  z-index: 1;
+  background: white;
+}
+
+
+.side-nav-icons {
+}

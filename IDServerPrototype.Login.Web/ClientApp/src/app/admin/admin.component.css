@@ -1,0 +1,6 @@
+.main-container {
+  background: #f7f7f7;
+  height: 100vh;
+  margin-left: 75px;
+  overflow:auto !important;
+}

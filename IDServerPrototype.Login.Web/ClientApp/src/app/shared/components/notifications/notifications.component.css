@@ -1,0 +1,14 @@
+.notifications img {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  margin: 0px 10px;
+}
+
+.notifications ul {
+list-style:none;
+}
+
+.notifications .content {
+  height: 420px;
+}

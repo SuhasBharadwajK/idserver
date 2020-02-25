@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="18" width="30">
+  <g opacity="1">
+    <g opacity="1">
+      <g opacity="1">
+        <rect fill="rgb(188,187,190)" fill-opacity="1" opacity="1" x="0" y="0" width="30" height="3" rx="0" ry="0"/>
+      </g>
+      <g opacity="1">
+        <rect fill="rgb(188,187,190)" fill-opacity="1" opacity="1" x="0" y="8" width="30" height="3" rx="0" ry="0"/>
+      </g>
+      <g opacity="1">
+        <rect fill="rgb(188,187,190)" fill-opacity="1" opacity="1" x="0" y="15" width="15" height="3" rx="0" ry="0"/>
+      </g>
+    </g>
+  </g>
+</svg>

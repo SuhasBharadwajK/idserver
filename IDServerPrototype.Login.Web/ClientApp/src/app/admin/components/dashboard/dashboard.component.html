@@ -1,0 +1,83 @@
+<div class="col-12 mt-5">
+  <div class="card col-5 float-left">
+    <div class="card-body">
+      <kendo-grid [data]="gridData">
+        <kendo-grid-column field="ProductID" title="ID" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductName" title="Name" width="250">
+        </kendo-grid-column>
+        <kendo-grid-column field="Category.CategoryName" title="Category">
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="Price" width="80">
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+        </kendo-grid-column>
+        <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+  <div class="card col-5 float-left">
+    <div class="card-body">
+      <kendo-chart>
+        <kendo-chart-title text="Units sold"></kendo-chart-title>
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+            [title]="{ text: 'Months' }">
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="line" [data]="[123, 276, 310, 212, 240, 156, 98]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[165, 210, 287, 144, 190, 167, 212]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[56, 140, 195, 46, 123, 78, 95]">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+  </div>
+  <div class="card col-5 float-left">
+    <div class="card-body">
+      <kendo-chart>
+        <kendo-chart-title text="Units sold"></kendo-chart-title>
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+            [title]="{ text: 'Months' }">
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="line" [data]="[123, 276, 310, 212, 240, 156, 98]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[165, 210, 287, 144, 190, 167, 212]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[56, 140, 195, 46, 123, 78, 95]">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+  </div>
+  <div class="card col-5 float-left">
+    <div class="card-body">
+      <kendo-chart>
+        <kendo-chart-title text="Trending"></kendo-chart-title>
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+            [title]="{ text: 'Months' }">
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="line" [data]="[123, 276, 310, 212, 240, 156, 98]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[165, 210, 287, 144, 190, 167, 212]">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="[56, 140, 195, 46, 123, 78, 95]">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+  </div>
+</div>

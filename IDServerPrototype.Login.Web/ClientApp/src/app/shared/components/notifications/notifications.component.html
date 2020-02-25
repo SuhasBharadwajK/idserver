@@ -1,0 +1,20 @@
+<div class="notifications">
+  <div class="d-flex">
+    <h4 class="m-0 p-4">Notification</h4>
+  </div>
+  <hr class="m-0"/>
+  <div class="overflow-auto content">
+    <ul class="p-0 mt-3">
+      <li *ngFor="let item of listData;" class="p-3">
+        <a class="d-flex">
+          <div class="col-2 p-0">
+            <img src="/assets/avatar.png" />
+          </div>
+          <div class="col-10 pr-0">
+            <p>{{item.desc}}</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
