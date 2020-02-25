@@ -1,0 +1,89 @@
+﻿
+body {
+    background-color: #ECECEC;
+    padding: 3% 10% 0% 10%;
+}
+
+.office-logo {
+    padding-right: 5%;
+}
+
+.custom-heading {
+    font-size: 58px;
+    font-weight: 600;
+}
+
+.main-container div {
+    margin-top: 2%;
+    padding: 0px;
+}
+
+.custom-font {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.link-container {
+    margin-top: 10% !important;
+}
+
+.images-container {
+    position: relative;
+}
+
+.consumptionbyday-img, .devicelimit-img, .activehours-img, .consumptionbyroom-img {
+    position: absolute;
+}
+
+.consumptionbyday-img {
+    left: 41%;
+    z-index: 1;
+}
+
+.consumptionbyroom-img {
+    top: 98%;
+    right: 56%;
+    z-index: 2;
+}
+
+.devicelimit-img {
+    z-index: 3;
+    top: 31%;
+    left: 3%;
+}
+
+.activehours-img {
+    top: 48%;
+    z-index: 0;
+    left: 11%;
+}
+
+.card {
+    border-radius: 2px;
+    display: inline-block;
+    margin: 1rem;
+    position: relative;
+    overflow: auto;
+    width: auto;
+    height: auto;
+}
+
+.image-card {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+a {
+    color: #008a00;
+}
+
+a.btn-success {
+    color: #FFF !important;
+}
+
+.inline-block {
+    display: inline-block !important;
+}
+
+.clear-margin {
+    margin: 0 !important;
+}

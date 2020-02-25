@@ -1,88 +1,53 @@
 @model LoginViewModel
 
-<div class="login-page">
-    <div class="page-header">
-        <h1>Login</h1>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row login-container header">
+        <div class="col-lg-6">
+            <img src="~/images/Logo@48px.svg">
+        </div>
+        <div class="col-lg-6">
+            <form class="clear-margin">
+                <a class="btn btn-success float-right" asp-controller="Account"
+                   asp-action="ExternalLogin" asp-route-provider="Office365"
+                   asp-route-returnUrl="@Model.ReturnUrl">
+                    <img src="~/images/Office-365-icon.svg" class="office-logo float-left inline-block">
+                    <div class="inline-block">Login with office 365</div>
+                </a>
+            </form>
+        </div>
     </div>
+    <div class="main-container row">
+        <div class="col-lg-6">
+            <div class="col-lg-6">
+                <span class="custom-heading">Compliance Ecosystem</span>
+                <p class="custom-font">Effective way to work</p>
+            </div>
+            <div class="col-lg-8 custom-font link-container">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id elit in tortor hendrerit hendrerit. Donec at luctus erat. Mauris sit amet massa et ipsum tempor elementum.
+                </p>
 
-    <partial name="_ValidationSummary" />
-
-    <div class="row">
-
-        @if (Model.EnableLocalLogin)
-        {
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Local Login</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <form asp-route="Login">
-                            <input type="hidden" asp-for="ReturnUrl" />
-
-                            <fieldset>
-                                <div class="form-group">
-                                    <label asp-for="Username"></label>
-                                    <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Password"></label>
-                                    <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
-                                </div>
-                                @if (Model.AllowRememberLogin)
-                                {
-                                    <div class="form-group login-remember">
-                                        <label asp-for="RememberLogin">
-                                            <input asp-for="RememberLogin">
-                                            <strong>Remember My Login</strong>
-                                        </label>
-                                    </div>
-                                }
-                                <div class="form-group">
-                                    <button class="btn btn-primary" name="button" value="login">Login</button>
-                                    <button class="btn btn-default" name="button" value="cancel">Cancel</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                <div class="col-lg-5 custom-font">
+                    <div>Visit our website</div>
+                    <div><a href="https://www.td.com/" target="_blank">tdbank.com</a></div>
                 </div>
             </div>
-        }
-
-        @if (Model.VisibleExternalProviders.Any())
-        {
-            <div class="col-md-6 col-sm-6 external-providers">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">External Login</h3>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-inline">
-                            @foreach (var provider in Model.VisibleExternalProviders)
-                            {
-                                <li>
-                                    <a class="btn btn-default"
-                                       asp-controller="Account"
-                                       asp-action="ExternalLogin"
-                                       asp-route-provider="@provider.AuthenticationScheme"
-                                       asp-route-returnUrl="@Model.ReturnUrl">
-                                        @provider.AuthenticationScheme
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        }
-
-        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
-        {
-            <div class="alert alert-warning">
-                <strong>Invalid login request</strong>
-                There are no login schemes configured for this client.
-            </div>
-        }
+        </div>
+        <div class="col-lg-6 images-container">
+            <img src="~/images/Consumptionbyday.png" class="consumptionbyday-img">
+            <img src="~/images/DeviceLimit.png" class="devicelimit-img">
+            <img src="~/images/ActiveHours.png" class="activehours-img">
+            <img src="~/images/Consumptionbyroom.png" class="consumptionbyroom-img">
+        </div>
     </div>
-</div>
+</body>
+</html>
