@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,7 @@ namespace IDServerPrototype.Login.Core
             string connectionString = Configuration["ConnectionStrings:IdentityDbConnection"];
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
@@ -41,7 +42,7 @@ namespace IDServerPrototype.Login.Core
                 .AddInMemoryClients(Clients.Get())
                 .AddInMemoryIdentityResources(Core.Configuration.Resources.GetIdentityResources())
                 .AddInMemoryApiResources(Core.Configuration.Resources.GetApiResources())
-                .AddAspNetIdentity<IdentityUser>()
+                .AddAspNetIdentity<AppUser>()
                 .AddDeveloperSigningCredential();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login", "IDServerPrototype.Login\IDServerPrototype.Login.csproj", "{C729EA01-2A5C-40BA-A5FA-8F84AB9E7753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDServerPrototype.Login", "IDServerPrototype.Login\IDServerPrototype.Login.csproj", "{C729EA01-2A5C-40BA-A5FA-8F84AB9E7753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login.Core", "IDServerPrototype.Login.Core\IDServerPrototype.Login.Core.csproj", "{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDServerPrototype.Login.Core", "IDServerPrototype.Login.Core\IDServerPrototype.Login.Core.csproj", "{93EEB827-D3D1-4FA9-82B4-517AFFCD7F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDServerPrototype.Login.Web", "IDServerPrototype.Login.Web\IDServerPrototype.Login.Web.csproj", "{2FCC0A6D-90C3-4B2D-99D4-A1D9E8F17945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDServerPrototype.Login.Web", "IDServerPrototype.Login.Web\IDServerPrototype.Login.Web.csproj", "{2FCC0A6D-90C3-4B2D-99D4-A1D9E8F17945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

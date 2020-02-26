@@ -8,6 +8,7 @@ using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using IDServerPrototype.Login.Core;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -30,8 +31,8 @@ namespace IdentityServer4.Quickstart.UI
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
@@ -45,8 +46,8 @@ namespace IdentityServer4.Quickstart.UI
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
-            UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager)
+            UserManager<AppUser> userManager, 
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
 
@@ -205,7 +206,7 @@ namespace IdentityServer4.Quickstart.UI
             var user = await _userManager.FindByLoginAsync(provider, userId);
             if (user == null)
             {
-                user = new IdentityUser { UserName = Guid.NewGuid().ToString() };
+                user = new AppUser { UserName = Guid.NewGuid().ToString() };
                 await _userManager.CreateAsync(user);
                 await _userManager.AddLoginAsync(user, new UserLoginInfo(provider, userId, provider));
             }
@@ -250,7 +251,7 @@ namespace IdentityServer4.Quickstart.UI
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationViewModel model)
         {
-            var user = new IdentityUser { UserName = model.Username };
+            var user = new AppUser { UserName = model.Username };
             await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddLoginAsync(user, new UserLoginInfo("form", model.Username, "form"));
 
