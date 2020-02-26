@@ -46,7 +46,7 @@ namespace IdentityServer4.Quickstart.UI
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
-            UserManager<AppUser> userManager, 
+            UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
@@ -241,7 +241,7 @@ namespace IdentityServer4.Quickstart.UI
 
             return Redirect("~/");
         }
-        
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -251,11 +251,22 @@ namespace IdentityServer4.Quickstart.UI
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationViewModel model)
         {
-            var user = new AppUser { UserName = model.Username };
-            await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddLoginAsync(user, new UserLoginInfo("form", model.Username, "form"));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Redirect("~/");
+            var user = new AppUser { UserName = model.Username, CustomTag = model.Username, Email = model.Username };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("userName", user.UserName));
+            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("CustomTag", user.CustomTag));
+            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("email", user.Email));
+
+            return Ok(new RegistrationViewModel { Username = user.UserName });
         }
 
         /// <summary>

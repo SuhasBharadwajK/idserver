@@ -55,9 +55,9 @@ namespace IDServerPrototype.Login.Core.Configuration
                     PostLogoutRedirectUris = new List<string> {"http://localhost:5100", "https://localhost:44350"}
                 },
                 new Client {
-                    ClientId = "Office365Client",
+                    ClientId = "1b7449f9-c6e4-44c3-bde3-7001b4db1b76",
                     ClientName = "Example Implicit Client Application",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
